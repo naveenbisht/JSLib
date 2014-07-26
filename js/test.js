@@ -19,6 +19,10 @@ window.T = (function () {
         dir: function(msg) {
             
             console.dir(msg);
+        },
+        
+        assest: function(msg) {
+            console.assest(msg);
         }
     }
     

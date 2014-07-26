@@ -1,13 +1,113 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="eng" ng-app="store">
     <head>
-        <link rel="stylesheet" href="css/main.css">    
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">    
     </head>
+    
     <bodY>
-        <h1>Welcome to my Lib</h1>
-        <div>one</div>
-        <div>two</div>
-        <script src="js/test.js"></script>
-        <script src="js/query.js"></script>
+        <div ng-controller="StoreController as store">
+            <div ng-repeat="product in store.products">
+                <h1>{{ product.name }}</h1>
+                <h2>{{ product.age }}</h2>
+                <button ng-show="product.status">store</button>
+            </div> 
+        </div>
+        
+        <div ng-controller="StoreController as store1">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="product in store1.products">
+                    <h3>
+                        {{ product.name }}
+                        <em class="pull-right">{{ product.age }}</em>
+                    </h3>
+                </li>
+            </ul> 
+        </div>
+        
+        
+        <!--section ng-init="tab = 1" ng-controller="PanelController as panel">
+            <ul class="nav nav-pills">
+                <li ng-class="{ active:tab === 1}"><a href ng-click="tab = 1">Discription</a></li>
+                <li ng-class="{ active:tab === 2}"><a href ng-click="tab = 2">Spacification</a></li>
+                <li ng-class="{ active:tab === 3}"><a href ng-click="tab = 3">Reviews</a></li>
+            </ul>
+            
+            <div class="panel" ng-show="tab === 1">
+            <h1>Welcome Pankaj</h1>
+            </div>
+            
+             <div class="panel" ng-show="tab === 2">
+                <h1>Welcome karan</h1>
+            </div>
+             
+            <div class="panel" ng-show="tab === 3">
+                <h1>Welcome yoyo</h1>
+            </div>
+        </section-->
+        
+        <section ng-controller="PanelController as panel">
+            <ul class="nav nav-pills">
+                <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Discription</a></li>
+                <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Spacification</a></li>
+                <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+            </ul>
+            
+            <div class="panel" ng-show="panel.isSelected(1)">
+            <h1>Welcome Pankaj</h1>
+            </div>
+            
+             <div class="panel" ng-show="panel.isSelected(2)">
+                <h1>Welcome karan</h1>
+            </div>
+             
+            <div class="panel" ng-show="panel.isSelected(3)">
+                <h1>Welcome yoyo</h1>
+            </div>
+        </section>
+        
+         
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>    
+        <script>
+            
+            (function () {
+               
+            var app = angular.module('store', []);
+               
+            app.controller('StoreController', function () {
+                this.products = gems;
+            });
+            
+            var gems = [{
+                name: "Pankaj  Bisht",
+                age: 25,
+                status: false
+            }, {
+                name: "karan",
+                age: 26,
+                status: true
+            }];
+            
+            
+            app.controller('PanelController', function () {
+               this.tab = 1;
+               
+               this.selectTab = function (setTab) {
+                    this.tab = setTab; 
+               };
+               
+               this.isSelected = function (checkTab) {
+                    return this.tab === checkTab;
+               };
+               
+            });
+                
+            }());
+            
+            
+        </script>
+        <!--script src="js/test.js"></script-->
+        <!--script src="js/query.js"></script-->
     </bodY>
 </html>
